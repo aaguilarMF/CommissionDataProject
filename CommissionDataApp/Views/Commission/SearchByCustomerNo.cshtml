@@ -1,11 +1,80 @@
-﻿
-<div class="row col-md-12">
-    <label>{{searchByCustomerNoHeader}}:</label>
-    
-</div>
-<div class="row col-md-12">
-    <input type="text" ng-model="searchByCustomerNoVal" />
-    <button type="button" class="btn btn-primary" ng-click="searchByCustomerNo()">Search</button>
+﻿<div class="container">
+    <div class="row col-md-12">
+        <label>{{searchByCustomerNoHeader}}:</label>
+
+    </div>
+    <div class="row ">
+        <div class="col-md-3">
+            <input type="text" ng-model="searchByCustomerNoVal" />
+
+            <button type="button" class="btn btn-primary" ng-click="searchByCustomerNo()">Search</button>
+        </div>
+        <div ng-if="noCustomerFound" class="animate-if col-md-4">
+            <div>
+                <div class="pull-left">
+                    No Results. Would you like to add New Customer Number Entry?
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" ng-click="createNewCustomerCommissionEntry()">Create New</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row col-md-12">
+        <p></p>
+    </div>
+    <div class="row col-md-12">
+    </div>
 </div>
 
-<!--<div ui-grid="gridOptions"></div>-->
+<div ng-if="gridFilled" ng-style="{height: height.height + 'px'}" >
+    <div ui-grid="gridOptions"></div>
+</div>
+
+<!--<button ng-click='toggleModal()'>Open Modal Dialog</button>-->
+<modal-dialog show='modalShown' width='750px' height='60%'>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 ">
+                <label class="pull-right">
+                    Customer Number:
+                </label>
+            </div>
+            <div class="col-md-3">
+                <input type="text"  ng-model="newEntryModel.customerNumber" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="pull-right">
+                    Representative:
+                </label>
+            </div>
+            <div class="col-md-3">
+                <select name="singleSelect"  ng-model="newEntryModel.representativeId">
+                    <option ng-repeat="reps in repData.availableReps" value="{{reps.REP_ID}}">{{reps.OUTSIDE_REP}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="pull-right">
+                    Commission:
+                </label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" ng-model="newEntryModel.commission" />
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" ng-click="save()">Submit</button>
+    </div>
+</modal-dialog>
+
+<!-- 
+    <div ng-if="noCustomerFound">
+        <h3 ng-bind="noCustomerFoundDialog"></h3>
+        
+    </div>
+    -->

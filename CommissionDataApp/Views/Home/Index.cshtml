@@ -11,13 +11,16 @@
 <body>
     
     <div class="container">
-        <h1>{{models.helloAngular}}</h1>
+        <div class="text-center">
+            <h1>{{models.helloAngular}}</h1>
+        </div>
+        
         <ul class="nav nav-pills">
             <!--<li><a href="#!routeOne">Route One</a></li>
         <li><a href="#!routeTwo/6">Route Two</a></li>
         <li><a href="#!routeThree">Route Three</a></li>-->
-            <li><a href="#!searchCustomerNo">SEARCH</a></li>
-            <li><a href="#!searchCustomerNo"></a></li>
+            <li ><a  href="#!searchCustomerNo" >SEARCH</a></li>
+            <li><a  href="#!viewAllData">VIEW ALL COMMISSION DATA</a></li>
         </ul>
     </div>
     
@@ -26,8 +29,9 @@
         <li><a href="#!register">Register</a></li>
     </ul>-->
     <div class="container">
-        <div ng-view></div>
+        <div class="gridStyle" ng-view></div>
     </div>
+        
     
 </body>
 </html>

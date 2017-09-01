@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommissionModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CARX1APP.CARS_CPR_COMMISSION_TAB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CARS_CPR_COMMISSION_TAB">
+    <Key>
+      <PropertyRef Name="CUSTOMER_NO" />
+      <PropertyRef Name="REP_ID" />
+      <PropertyRef Name="COMMISSION" />
+      <PropertyRef Name="COMMISSION_ID" />
+    </Key>
+    <Property Name="CUSTOMER_NO" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="REP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMMISSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMMISSION_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
+    <Key>
+      <PropertyRef Name="REP_ID" />
+    </Key>
+    <Property Name="OUTSIDE_REP" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="REP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="CARS_CPR_COMMISSION_TAB_C_FK1">
+    <End Role="CARS_CPR_OUTSIDE_REP_TAB" Type="Self.CARS_CPR_OUTSIDE_REP_TAB" Multiplicity="1" />
+    <End Role="CARS_CPR_COMMISSION_TAB" Type="Self.CARS_CPR_COMMISSION_TAB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARS_CPR_OUTSIDE_REP_TAB">
+        <PropertyRef Name="REP_ID" />
+      </Principal>
+      <Dependent Role="CARS_CPR_COMMISSION_TAB">
+        <PropertyRef Name="REP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CommissionModelStoreContainer">
+    <EntitySet Name="CARS_CPR_OUTSIDE_REP_TAB" EntityType="Self.CARS_CPR_OUTSIDE_REP_TAB" Schema="CARX1APP" store:Type="Tables" />
+    <EntitySet Name="CARS_CPR_COMMISSION_TAB" EntityType="Self.CARS_CPR_COMMISSION_TAB" store:Type="Tables" store:Schema="CARX1APP">
+      <DefiningQuery>SELECT 
+"CARS_CPR_COMMISSION_TAB"."CUSTOMER_NO" AS "CUSTOMER_NO", 
+"CARS_CPR_COMMISSION_TAB"."REP_ID" AS "REP_ID", 
+"CARS_CPR_COMMISSION_TAB"."COMMISSION" AS "COMMISSION", 
+"CARS_CPR_COMMISSION_TAB"."COMMISSION_ID" AS "COMMISSION_ID"
+FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="CARS_CPR_COMMISSION_TAB_C_FK1" Association="Self.CARS_CPR_COMMISSION_TAB_C_FK1">
+      <End Role="CARS_CPR_OUTSIDE_REP_TAB" EntitySet="CARS_CPR_OUTSIDE_REP_TAB" />
+      <End Role="CARS_CPR_COMMISSION_TAB" EntitySet="CARS_CPR_COMMISSION_TAB" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

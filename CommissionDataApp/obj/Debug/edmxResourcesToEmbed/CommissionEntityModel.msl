@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CommissionModelStoreContainer" CdmEntityContainer="CommissionEntities">
+    <EntitySetMapping Name="CARS_CPR_OUTSIDE_REP_TAB">
+      <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB">
+        <MappingFragment StoreEntitySet="CARS_CPR_OUTSIDE_REP_TAB">
+          <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+          <ScalarProperty Name="OUTSIDE_REP" ColumnName="OUTSIDE_REP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARS_CPR_COMMISSION_TAB">
+      <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_COMMISSION_TAB">
+        <MappingFragment StoreEntitySet="CARS_CPR_COMMISSION_TAB">
+          <ScalarProperty Name="COMMISSION_ID" ColumnName="COMMISSION_ID" />
+          <ScalarProperty Name="COMMISSION" ColumnName="COMMISSION" />
+          <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+          <ScalarProperty Name="CUSTOMER_NO" ColumnName="CUSTOMER_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

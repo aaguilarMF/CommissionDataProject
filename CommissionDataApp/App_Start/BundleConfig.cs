@@ -26,17 +26,28 @@ namespace CommissionDataApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap.min.css",
+                      "~/Content/ui-grid.min.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/CommissionDataApp")
                 .IncludeDirectory("~/Scripts/Controllers", "*.js")
                 .IncludeDirectory("~/Scripts/Services", "*.js")
+                .IncludeDirectory("~/Scripts/Directives", "*.js")
+                .IncludeDirectory("~/Scripts/Factories", "*.js")
                 .Include("~/Scripts/_CommissionDataApp.js")
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/Angular")
                 .Include("~/Scripts/angular.min.js")
                 .Include("~/Scripts/angular-route.min.js")
+                .Include("~/Scripts/ui-grid.min.js")
+                );
+
+            bundles.Add(new ScriptBundle("~/bundles/AngularDev")
+                .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-route.js")
+                .Include("~/Scripts/angular-animate.js")
+                .Include("~/Scripts/ui-grid.js")
                 );
 
             //BundleTable.EnableOptimizations = true;

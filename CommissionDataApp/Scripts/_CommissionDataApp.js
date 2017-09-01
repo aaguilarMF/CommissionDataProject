@@ -1,11 +1,20 @@
-﻿var CommissionDataApp = angular.module('CommissionDataApp', ['ngRoute']);
+﻿var CommissionDataApp = angular.module('CommissionDataApp', ['ngRoute', 'ui.grid', 'ngAnimate']);
+
 
 //Controllers
 CommissionDataApp.controller('LandingPageController', LandingPageController);
 CommissionDataApp.controller('SearchController', SearchController);
+CommissionDataApp.controller('CommissionDataController', CommissionDataController);
 
 //Services
 CommissionDataApp.service('SearchServices', SearchServices);
+
+//Factories
+CommissionDataApp.factory('CommissionRepresentativeFactory', CommissionRepresentativeFactory);
+CommissionDataApp.factory('CommissionFactory', CommissionFactory);
+
+//Directives
+CommissionDataApp.directive('modalDialog', ModalDialogDirective);
 
 var configFunction = function ($routeProvider) {
 
@@ -14,8 +23,9 @@ var configFunction = function ($routeProvider) {
             templateUrl: '/Commission/SearchByCustomerNo',
             controller: SearchController
         })
-        .when('/routeTwo/:donuts', {
-            templateUrl: function (params) { return '/routesDemo/two?donuts=' + params.donuts; }
+        .when('/viewAllData', {
+            templateUrl: '/Commission/ViewAllData',
+            controller: CommissionDataController
         })
         .when('/routeThree', {
             templateUrl: 'routesDemo/three'
