@@ -28,9 +28,29 @@
     </div>
 </div>
 
-<div ng-if="gridFilled" ng-style="{height: height.height + 'px'}" >
-    <div ui-grid="gridOptions"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div ng-if="gridFilled" ng-style="{height: height.height + 'px'}">
+                <div ui-grid="gridOptions" ui-grid-edit></div>
+            </div>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-8">
+            <div class="bottom" ng-if="editModel.showButton">
+                <button type="button" class="btn btn-warning" ng-click="">Save Changes In RED</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <!--<button ng-click='toggleModal()'>Open Modal Dialog</button>-->
 <modal-dialog show='modalShown' width='750px' height='60%'>

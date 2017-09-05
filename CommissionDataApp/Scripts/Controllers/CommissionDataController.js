@@ -21,16 +21,23 @@
             if (response.success) {
                 var data = response.data;
                 var columnDefs = [];
+                var colsToShow = [false, true, false, true, true];
+                var editable = [false, false, false, false, true];
                 var target = data[0];
+                var col = 0;
                 for (var k in target) {
-                    if (target.hasOwnProperty(k)) {
-                        if (String(k).length > 2) {
-                            columnDefs.push({ field: String(k), displayName: k });
-                        } else {
-                            columnDefs.push({ field: String(k), displayName: k });
-                        }
+                    if (colsToShow[col]) {
+                        if (target.hasOwnProperty(k)) {
+                            if (String(k).length > 2) {
+                                columnDefs.push({ field: String(k), displayName: k, enableCellEdit: editable[col] });
+                            } else {
+                                columnDefs.push({ field: String(k), displayName: k });
+                            }
 
+                        }
                     }
+                    
+                    col++;
                 }
                 $scope.gridOptions.data = data;
                 $scope.gridOptions.columnDefs = columnDefs;

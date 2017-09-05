@@ -26,6 +26,7 @@ namespace CommissionDataApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap.min.css",
+                      "~/Content/ui-bootstrap-csp.css",
                       "~/Content/ui-grid.min.css",
                       "~/Content/site.css"));
 
@@ -48,6 +49,9 @@ namespace CommissionDataApp
                 .Include("~/Scripts/angular-route.js")
                 .Include("~/Scripts/angular-animate.js")
                 .Include("~/Scripts/ui-grid.js")
+                );
+            bundles.Add(new ScriptBundle("~/bundles/ui-bootstrap")
+                .IncludeDirectory("~/Scripts/angular-ui", "*.js")
                 );
 
             //BundleTable.EnableOptimizations = true;
