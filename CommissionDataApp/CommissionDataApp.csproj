@@ -316,6 +316,7 @@
     <Content Include="Content\ui-grid.eot" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Properties\PublishProfiles\CommissionReportUI.pubxml" />
+    <Content Include="Scripts\Directives\ConfirmClickDirective.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\Directives\ModalDialogDirective.js" />
     <Content Include="Scripts\Factories\CommissionFactory.js" />

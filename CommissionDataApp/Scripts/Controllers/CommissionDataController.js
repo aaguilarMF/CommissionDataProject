@@ -101,6 +101,10 @@
         var selectedRows = $scope.gridApi.selection.getSelectedRows();
         var row = selectedRows[0];
         if (row) {
+            if (window.confirm("Are you sure you want to delete CUSTOMER_NO: "+row.CUSTOMER_NO+"?")) {
+            } else {
+                return;
+            }
         } else {
             alert('Select a row in order to delete');
             return;
@@ -125,6 +129,10 @@
             }
         });*/
     };
+    $scope.tester = function () {
+
+        alert("delete");
+    }
     $scope.saveEdit = function () {
         var selectedRows = $scope.gridApi.selection.getSelectedRows();
         var row = selectedRows[0];

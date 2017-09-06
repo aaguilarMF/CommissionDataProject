@@ -15,6 +15,7 @@ CommissionDataApp.factory('CommissionFactory', CommissionFactory);
 
 //Directives
 CommissionDataApp.directive('modalDialog', ModalDialogDirective);
+CommissionDataApp.directive('ngConfirmClick', ConfirmClickDirective);
 
 var configFunction = function ($routeProvider) {
 
