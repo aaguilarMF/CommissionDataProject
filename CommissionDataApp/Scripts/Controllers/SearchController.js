@@ -28,10 +28,8 @@
                             } else {
                                 columnDefs.push({ field: String(k), displayName: k, cellClass: null });
                             }
-
                         }
                     }
-                    
                     col++;
                 }
                 $scope.gridOptions.data = [data];
@@ -50,7 +48,7 @@
         }, function () { alert("don't think we'll ever get here") })
     };
     $scope.newEntryModel = {
-        customerNumber: null,
+        customerNumber: '',
         respresentativeId: null,
         commission: null
     }
@@ -60,8 +58,47 @@
     };
     $scope.gridFilled = false;
     $scope.gridOptions = {
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
         data: [{}] // 'washCoatData'
         , columnDefs: []
+    };
+    $scope.activeCustomers = null;
+    $scope.getActiveCustomers = function () {
+        var result = CommissionFactory.getActiveCustomers();
+        result.then(function (response) {
+            if (response.success) {
+                var data = response.data;
+                $scope.activeCustomers = data;
+            } else { //this fires if we don't even reach webapi
+                alert("failure");
+                //$scope.noCustomerFoundDialog
+            }
+        });
+    }
+    $scope.deleteRow = function () {
+        //$scope.gridOptions.data = vm.resultSimulatedData;
+        var selectedRow = $scope.gridApi.selection.getSelectedRows(); //<--Property undefined error here
+        if (selectedRow[0]) {
+            var result = CommissionFactory.deleteRow(selectedRow[0]);
+            result.then(function (response) {
+                if (response.success) {
+                    $scope.gridOptions.data = [];
+                    $scope.gridFilled = false;
+                    $scope.editModel.showButton = false;
+                } else { //this fires if we don't even reach webapi
+                    alert(response.message);
+                    //$scope.noCustomerFoundDialog
+                }
+            });
+        } else {
+            alert('Select a row by clicking on it first');
+        }
+        /*$timeout(function () {
+            if (vm.gridApi.selection.selectedRow) {
+                vm.gridApi.selection.selectRow(vm.gridOptions.data[0]);
+            }
+        });*/
     };
     $scope.gridOptions.onRegisterApi = function (gridApi) {
         //set gridApi on scope
@@ -90,7 +127,6 @@
         showButton: false,
         hasChanged: false
     };
-    
     $scope.modalShown = false;
     $scope.toggleModal = function () {
         $scope.modalShown = !$scope.modalShown;
@@ -111,24 +147,54 @@
         representativeModel: null,
         availableReps: null
     };
+    $scope.searchModal = {
+        matchingResult: false,
+        regex: null,
+        escapeRegExp: function (string) {
+            return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        },
+        filterBySearch: function (customerKeyValue) {
+            if (!$scope.newEntryModel.customerNumber) { $scope.searchModal.matchingResult = false; return false; }
+            if ($scope.newEntryModel.customerNumber == customerKeyValue.CUSTOMER_ID) {
+                $scope.searchModal.matchingResult = true;
+                return true;
+            }
+
+
+        }
+    };
     $scope.save = function () {
+        if (!$scope.searchModal.matchingResult) {
+            alert('Customer Number needs to match an active customer. Search.');
+            return;
+        }
+        if ($scope.newEntryModel.representativeId == null || $scope.newEntryModel.commission == null) {
+            alert("Representative and Commission must not be null");
+            return;
+        }
         var result = CommissionFactory.save($scope.newEntryModel);
         result.then(function (response) {
             if (response.success) {
                 var data = response.data;
+                var colsToShow = [false, true, false, true, true];
+                var editable = [false, false, false, false, true];
                 var columnDefs = [];
                 var target = data;
+                var curr = 0;
                 for (var k in target) {
-                    if (target.hasOwnProperty(k)) {
-                        if (String(k).length > 2) {
-                            columnDefs.push({ field: String(k), displayName: k });
-                        } else {
-                            columnDefs.push({ field: String(k), displayName: k });
-                        }
+                    if (colsToShow[curr]) {
+                        if (target.hasOwnProperty(k)) {
+                            if (String(k).length > 2) {
+                                columnDefs.push({ field: String(k), displayName: k, enableCellEdit: editable[curr]  });
+                            } else {
+                                columnDefs.push({ field: String(k), displayName: k });
+                            }
 
+                        }
                     }
+                    curr++;;
                 }
-                $scope.gridOptions.data = [data, data, data, data, data, data, data, data, data, data, data];
+                $scope.gridOptions.data = [data];
                 $scope.gridOptions.columnDefs = columnDefs;
 
                 //for div hide or appear stuff
@@ -141,9 +207,59 @@
             }
         });
     };
+    $scope.saveEdit = function () {
+        var row =$scope.gridOptions.data[0];
+        var result = CommissionFactory.save({
+            customerNumber: row.CUSTOMER_NO,
+            representativeId: row.REP_ID,
+            commission: row.COMMISSION,
+            COMMISSION_ID: row.COMMISSION_ID,
+        }
+        );
+        result.then(function (response) {
+            if (response.success) {
+                var data = response.data;
+                var colsToShow = [false, true, false, true, true];
+                var editable = [false, false, false, false, true];
+                var columnDefs = [];
+                var target = data;
+                var curr = 0;
+                for (var k in target) {
+                    if (colsToShow[curr]) {
+                        if (target.hasOwnProperty(k)) {
+                            if (String(k).length > 2) {
+                                columnDefs.push({ field: String(k), displayName: k, enableCellEdit: editable[curr] });
+                            } else {
+                                columnDefs.push({ field: String(k), displayName: k });
+                            }
+
+                        }
+                    }
+                    curr++;;
+                }
+                $scope.gridOptions.data = [data];
+                $scope.gridOptions.columnDefs = columnDefs;
+
+                //for div hide or appear stuff
+                $scope.gridFilled = true;
+                $scope.noCustomerFound = false;
+                $scope.editModel.showButton = false;
+            } else { //this fires if we don't even reach webapi
+                alert("failure to save commission");
+                //$scope.noCustomerFoundDialog
+            }
+        });
+    };
+    $scope.$watch('newEntryModel.customerNumber', function (value) {
+        $scope.searchModal.regex = new RegExp('\\b' + $scope.searchModal.escapeRegExp(value), 'i');
+    });
+
     
     $scope.noCustomerFound = false;
     $scope.noCustomerFoundDialog = "No Customer Found. Would You like to add Add new Customer Number entry?"
+
+    /* run these on instantiation*/
+    $scope.getActiveCustomers();
 
 }
 SearchController.$inject = ['$scope', 'SearchServices', 'CommissionRepresentativeFactory', 'CommissionFactory', 'uiGridConstants'];

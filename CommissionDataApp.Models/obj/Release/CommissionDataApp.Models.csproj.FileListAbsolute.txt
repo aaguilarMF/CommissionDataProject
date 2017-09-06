@@ -1,0 +1,5 @@
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\bin\Release\CommissionDataApp.Models.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\bin\Release\CommissionDataApp.Models.pdb
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Release\CommissionDataApp.Models.csprojResolveAssemblyReference.cache
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Release\CommissionDataApp.Models.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Release\CommissionDataApp.Models.pdb

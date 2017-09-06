@@ -25,7 +25,8 @@ namespace CommissionDataApp
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CARS_CPR_OUTSIDE_REP_TAB> CARS_CPR_OUTSIDE_REP_TAB { get; set; }
+        public virtual DbSet<CUSTOMER_INFO> CUSTOMER_INFO { get; set; }
         public virtual DbSet<CARS_CPR_COMMISSION_TAB> CARS_CPR_COMMISSION_TAB { get; set; }
+        public virtual DbSet<CARS_CPR_OUTSIDE_REP_TAB> CARS_CPR_OUTSIDE_REP_TAB { get; set; }
     }
 }

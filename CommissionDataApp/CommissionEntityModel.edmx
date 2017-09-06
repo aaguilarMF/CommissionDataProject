@@ -5,13 +5,8 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CommissionModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CARX1APP.CARS_CPR_COMMISSION_TAB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CARS_CPR_COMMISSION_TAB">
           <Key>
-            <PropertyRef Name="CUSTOMER_NO" />
-            <PropertyRef Name="REP_ID" />
-            <PropertyRef Name="COMMISSION" />
             <PropertyRef Name="COMMISSION_ID" />
           </Key>
           <Property Name="CUSTOMER_NO" Type="varchar2" MaxLength="20" Nullable="false" />
@@ -26,6 +21,41 @@ warning 6002: The table/view 'CARX1APP.CARS_CPR_COMMISSION_TAB' does not have a 
           <Property Name="OUTSIDE_REP" Type="varchar2" MaxLength="100" Nullable="false" />
           <Property Name="REP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARX1APP.CUSTOMER_INFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CUSTOMER_INFO">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="NAME" />
+            <PropertyRef Name="CREATION_DATE" />
+            <PropertyRef Name="PARTY" />
+            <PropertyRef Name="DEFAULT_DOMAIN" />
+            <PropertyRef Name="PARTY_TYPE_DB" />
+            <PropertyRef Name="TEXT_ID$" />
+            <PropertyRef Name="OBJKEY" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CREATION_DATE" Type="date" Nullable="false" />
+          <Property Name="ASSOCIATION_NO" Type="varchar2" MaxLength="50" />
+          <Property Name="PARTY" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="DEFAULT_DOMAIN" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="DEFAULT_LANGUAGE" Type="varchar2" MaxLength="4000" />
+          <Property Name="DEFAULT_LANGUAGE_DB" Type="varchar2" MaxLength="2" />
+          <Property Name="COUNTRY" Type="varchar2" MaxLength="4000" />
+          <Property Name="COUNTRY_DB" Type="varchar2" MaxLength="2" />
+          <Property Name="PARTY_TYPE" Type="varchar2" MaxLength="4000" />
+          <Property Name="PARTY_TYPE_DB" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CORPORATE_FORM" Type="varchar2" MaxLength="8" />
+          <Property Name="IDENTIFIER_REFERENCE" Type="varchar2" MaxLength="100" />
+          <Property Name="IDENTIFIER_REF_VALIDATION" Type="varchar2" MaxLength="4000" />
+          <Property Name="IDENTIFIER_REF_VALIDATION_DB" Type="varchar2" MaxLength="20" />
+          <Property Name="TEXT_ID$" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PICTURE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="OBJID" Type="rowid" />
+          <Property Name="OBJVERSION" Type="varchar2" MaxLength="2000" />
+          <Property Name="OBJKEY" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="CARS_CPR_COMMISSION_TAB_C_FK1">
           <End Role="CARS_CPR_OUTSIDE_REP_TAB" Type="Self.CARS_CPR_OUTSIDE_REP_TAB" Multiplicity="1" />
           <End Role="CARS_CPR_COMMISSION_TAB" Type="Self.CARS_CPR_COMMISSION_TAB" Multiplicity="*" />
@@ -38,16 +68,33 @@ warning 6002: The table/view 'CARX1APP.CARS_CPR_COMMISSION_TAB' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        
         <EntityContainer Name="CommissionModelStoreContainer">
+          <EntitySet Name="CARS_CPR_COMMISSION_TAB" EntityType="Self.CARS_CPR_COMMISSION_TAB" Schema="CARX1APP" store:Type="Tables" />
           <EntitySet Name="CARS_CPR_OUTSIDE_REP_TAB" EntityType="Self.CARS_CPR_OUTSIDE_REP_TAB" Schema="CARX1APP" store:Type="Tables" />
-          <EntitySet Name="CARS_CPR_COMMISSION_TAB" EntityType="Self.CARS_CPR_COMMISSION_TAB" store:Type="Tables" store:Schema="CARX1APP">
+          <EntitySet Name="CUSTOMER_INFO" EntityType="Self.CUSTOMER_INFO" store:Type="Views" store:Schema="CARX1APP">
             <DefiningQuery>SELECT 
-"CARS_CPR_COMMISSION_TAB"."CUSTOMER_NO" AS "CUSTOMER_NO", 
-"CARS_CPR_COMMISSION_TAB"."REP_ID" AS "REP_ID", 
-"CARS_CPR_COMMISSION_TAB"."COMMISSION" AS "COMMISSION", 
-"CARS_CPR_COMMISSION_TAB"."COMMISSION_ID" AS "COMMISSION_ID"
-FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQuery>
+"CUSTOMER_INFO"."CUSTOMER_ID" AS "CUSTOMER_ID", 
+"CUSTOMER_INFO"."NAME" AS "NAME", 
+"CUSTOMER_INFO"."CREATION_DATE" AS "CREATION_DATE", 
+"CUSTOMER_INFO"."ASSOCIATION_NO" AS "ASSOCIATION_NO", 
+"CUSTOMER_INFO"."PARTY" AS "PARTY", 
+"CUSTOMER_INFO"."DEFAULT_DOMAIN" AS "DEFAULT_DOMAIN", 
+"CUSTOMER_INFO"."DEFAULT_LANGUAGE" AS "DEFAULT_LANGUAGE", 
+"CUSTOMER_INFO"."DEFAULT_LANGUAGE_DB" AS "DEFAULT_LANGUAGE_DB", 
+"CUSTOMER_INFO"."COUNTRY" AS "COUNTRY", 
+"CUSTOMER_INFO"."COUNTRY_DB" AS "COUNTRY_DB", 
+"CUSTOMER_INFO"."PARTY_TYPE" AS "PARTY_TYPE", 
+"CUSTOMER_INFO"."PARTY_TYPE_DB" AS "PARTY_TYPE_DB", 
+"CUSTOMER_INFO"."CORPORATE_FORM" AS "CORPORATE_FORM", 
+"CUSTOMER_INFO"."IDENTIFIER_REFERENCE" AS "IDENTIFIER_REFERENCE", 
+"CUSTOMER_INFO"."IDENTIFIER_REF_VALIDATION" AS "IDENTIFIER_REF_VALIDATION", 
+"CUSTOMER_INFO"."IDENTIFIER_REF_VALIDATION_DB" AS "IDENTIFIER_REF_VALIDATION_DB", 
+"CUSTOMER_INFO"."TEXT_ID$" AS "TEXT_ID$", 
+"CUSTOMER_INFO"."PICTURE_ID" AS "PICTURE_ID", 
+"CUSTOMER_INFO"."OBJID" AS "OBJID", 
+"CUSTOMER_INFO"."OBJVERSION" AS "OBJVERSION", 
+"CUSTOMER_INFO"."OBJKEY" AS "OBJKEY"
+FROM "CARX1APP"."CUSTOMER_INFO" "CUSTOMER_INFO"</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="CARS_CPR_COMMISSION_TAB_C_FK1" Association="Self.CARS_CPR_COMMISSION_TAB_C_FK1">
             <End Role="CARS_CPR_OUTSIDE_REP_TAB" EntitySet="CARS_CPR_OUTSIDE_REP_TAB" />
@@ -59,25 +106,49 @@ FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQue
     <edmx:ConceptualModels>
       <Schema Namespace="CommissionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CommissionEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CARS_CPR_OUTSIDE_REP_TAB" EntityType="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB" />
+          <EntitySet Name="CUSTOMER_INFO" EntityType="CommissionModel.CUSTOMER_INFO" />
           <EntitySet Name="CARS_CPR_COMMISSION_TAB" EntityType="CommissionModel.CARS_CPR_COMMISSION_TAB" />
+          <EntitySet Name="CARS_CPR_OUTSIDE_REP_TAB" EntityType="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB" />
           <AssociationSet Name="CARS_CPR_COMMISSION_TAB_C_FK1" Association="CommissionModel.CARS_CPR_COMMISSION_TAB_C_FK1">
             <End Role="CARS_CPR_OUTSIDE_REP_TAB" EntitySet="CARS_CPR_OUTSIDE_REP_TAB" />
             <End Role="CARS_CPR_COMMISSION_TAB" EntitySet="CARS_CPR_COMMISSION_TAB" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
+        <EntityType Name="CUSTOMER_INFO">
           <Key>
-            <PropertyRef Name="REP_ID" />
+            <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="NAME" />
+            <PropertyRef Name="CREATION_DATE" />
+            <PropertyRef Name="PARTY" />
+            <PropertyRef Name="DEFAULT_DOMAIN" />
+            <PropertyRef Name="PARTY_TYPE_DB" />
+            <PropertyRef Name="TEXT_ID_" />
+            <PropertyRef Name="OBJKEY" />
           </Key>
-          <Property Name="OUTSIDE_REP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="REP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="CUSTOMER_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="ASSOCIATION_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PARTY" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DEFAULT_DOMAIN" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DEFAULT_LANGUAGE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="DEFAULT_LANGUAGE_DB" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY_DB" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PARTY_TYPE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PARTY_TYPE_DB" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CORPORATE_FORM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFIER_REFERENCE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFIER_REF_VALIDATION" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFIER_REF_VALIDATION_DB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_ID_" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PICTURE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="OBJID" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="OBJVERSION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="OBJKEY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CARS_CPR_COMMISSION_TAB">
           <Key>
-            <PropertyRef Name="CUSTOMER_NO" />
-            <PropertyRef Name="REP_ID" />
-            <PropertyRef Name="COMMISSION" />
             <PropertyRef Name="COMMISSION_ID" />
           </Key>
           <Property Name="CUSTOMER_NO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -85,6 +156,13 @@ FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQue
           <Property Name="COMMISSION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="COMMISSION_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="CARS_CPR_OUTSIDE_REP_TAB" Relationship="CommissionModel.CARS_CPR_COMMISSION_TAB_C_FK1" FromRole="CARS_CPR_COMMISSION_TAB" ToRole="CARS_CPR_OUTSIDE_REP_TAB" />
+        </EntityType>
+        <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
+          <Key>
+            <PropertyRef Name="REP_ID" />
+          </Key>
+          <Property Name="OUTSIDE_REP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
         <Association Name="CARS_CPR_COMMISSION_TAB_C_FK1">
           <End Type="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB" Role="CARS_CPR_OUTSIDE_REP_TAB" Multiplicity="1" />
@@ -104,11 +182,30 @@ FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQue
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CommissionModelStoreContainer" CdmEntityContainer="CommissionEntities">
-          <EntitySetMapping Name="CARS_CPR_OUTSIDE_REP_TAB">
-            <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB">
-              <MappingFragment StoreEntitySet="CARS_CPR_OUTSIDE_REP_TAB">
-                <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
-                <ScalarProperty Name="OUTSIDE_REP" ColumnName="OUTSIDE_REP" />
+          <EntitySetMapping Name="CUSTOMER_INFO">
+            <EntityTypeMapping TypeName="CommissionModel.CUSTOMER_INFO">
+              <MappingFragment StoreEntitySet="CUSTOMER_INFO">
+                <ScalarProperty Name="OBJKEY" ColumnName="OBJKEY" />
+                <ScalarProperty Name="OBJVERSION" ColumnName="OBJVERSION" />
+                <ScalarProperty Name="OBJID" ColumnName="OBJID" />
+                <ScalarProperty Name="PICTURE_ID" ColumnName="PICTURE_ID" />
+                <ScalarProperty Name="TEXT_ID_" ColumnName="TEXT_ID$" />
+                <ScalarProperty Name="IDENTIFIER_REF_VALIDATION_DB" ColumnName="IDENTIFIER_REF_VALIDATION_DB" />
+                <ScalarProperty Name="IDENTIFIER_REF_VALIDATION" ColumnName="IDENTIFIER_REF_VALIDATION" />
+                <ScalarProperty Name="IDENTIFIER_REFERENCE" ColumnName="IDENTIFIER_REFERENCE" />
+                <ScalarProperty Name="CORPORATE_FORM" ColumnName="CORPORATE_FORM" />
+                <ScalarProperty Name="PARTY_TYPE_DB" ColumnName="PARTY_TYPE_DB" />
+                <ScalarProperty Name="PARTY_TYPE" ColumnName="PARTY_TYPE" />
+                <ScalarProperty Name="COUNTRY_DB" ColumnName="COUNTRY_DB" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="DEFAULT_LANGUAGE_DB" ColumnName="DEFAULT_LANGUAGE_DB" />
+                <ScalarProperty Name="DEFAULT_LANGUAGE" ColumnName="DEFAULT_LANGUAGE" />
+                <ScalarProperty Name="DEFAULT_DOMAIN" ColumnName="DEFAULT_DOMAIN" />
+                <ScalarProperty Name="PARTY" ColumnName="PARTY" />
+                <ScalarProperty Name="ASSOCIATION_NO" ColumnName="ASSOCIATION_NO" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -119,6 +216,14 @@ FROM "CARX1APP"."CARS_CPR_COMMISSION_TAB" "CARS_CPR_COMMISSION_TAB"</DefiningQue
                 <ScalarProperty Name="COMMISSION" ColumnName="COMMISSION" />
                 <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
                 <ScalarProperty Name="CUSTOMER_NO" ColumnName="CUSTOMER_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CARS_CPR_OUTSIDE_REP_TAB">
+            <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_OUTSIDE_REP_TAB">
+              <MappingFragment StoreEntitySet="CARS_CPR_OUTSIDE_REP_TAB">
+                <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+                <ScalarProperty Name="OUTSIDE_REP" ColumnName="OUTSIDE_REP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

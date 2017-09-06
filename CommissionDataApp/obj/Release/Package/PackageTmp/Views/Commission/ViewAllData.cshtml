@@ -1,0 +1,19 @@
+﻿<div class="container">
+    <div class="row col-md-12">
+        <label>Behold, All Data:</label>
+    </div>
+    <div class="row col-md-12">
+        <div ng-if="gridFilled" ng-style="{height: height.height + 'px'}">
+            <div ui-grid="gridOptions" ui-grid-selection ui-grid-edit></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-8">
+            <div class="bottom" ng-if="editModel.showButton">
+                <button type="button" class="btn btn-warning" ng-click="saveEdit()">Save Changes In Red</button>
+            </div>
+        </div>
+    </div>
+
+</div>

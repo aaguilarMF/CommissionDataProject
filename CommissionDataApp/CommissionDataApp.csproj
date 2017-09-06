@@ -240,6 +240,9 @@
     <Compile Include="Controllers\CommissionDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RepresentativeController.cs" />
+    <Compile Include="CUSTOMER_INFO.cs">
+      <DependentUpon>CommissionEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -312,6 +315,7 @@
     <Content Include="Content\ui-grid.ttf" />
     <Content Include="Content\ui-grid.eot" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Properties\PublishProfiles\CommissionReportUI.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\Directives\ModalDialogDirective.js" />
     <Content Include="Scripts\Factories\CommissionFactory.js" />
