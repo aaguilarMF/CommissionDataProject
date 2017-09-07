@@ -5,6 +5,8 @@
 CommissionDataApp.controller('LandingPageController', LandingPageController);
 CommissionDataApp.controller('SearchController', SearchController);
 CommissionDataApp.controller('CommissionDataController', CommissionDataController);
+CommissionDataApp.controller('LoginController', LoginController);
+CommissionDataApp.controller('RegisterController', RegisterController);
 
 //Services
 CommissionDataApp.service('SearchServices', SearchServices);
@@ -12,12 +14,15 @@ CommissionDataApp.service('SearchServices', SearchServices);
 //Factories
 CommissionDataApp.factory('CommissionRepresentativeFactory', CommissionRepresentativeFactory);
 CommissionDataApp.factory('CommissionFactory', CommissionFactory);
+CommissionDataApp.factory('AuthHttpResponseInterceptor', AuthHttpResponseInterceptor);
+CommissionDataApp.factory('LoginFactory', LoginFactory);
+CommissionDataApp.factory('RegistrationFactory', RegistrationFactory);
 
 //Directives
 CommissionDataApp.directive('modalDialog', ModalDialogDirective);
 CommissionDataApp.directive('ngConfirmClick', ConfirmClickDirective);
 
-var configFunction = function ($routeProvider) {
+var configFunction = function ($routeProvider, $httpProvider) {
 
     $routeProvider.
         when('/searchCustomerNo', {
@@ -32,16 +37,28 @@ var configFunction = function ($routeProvider) {
             templateUrl: 'routesDemo/three'
         })
         .when('/login', {
-            templateUrl: '/Account/Login'
+            templateUrl: '/Account/Login',
+            controller: LoginController
         })
         .when('/register', {
             templateUrl: '/Account/Register'
         })
+        .when('/signOut', {
+            templateUrl: '/Account/SignOut'
+        })
         .when('/washCoatDataView', {
             templateUrl: '/WashCoat/Index'
+        })
+        .when('/login?returnUrl', {
+        templateUrl: 'Account/Login',
+        controller: LoginController
+        })
+        .when('/register', {
+            templateUrl: '/Account/Register',
+            controller: RegisterController
         });
 
-    //$httpProvider.interceptors.push('AuthHttpResponseInterceptor');
+    $httpProvider.interceptors.push('AuthHttpResponseInterceptor');
 }
-configFunction.$inject = ['$routeProvider' ];
+configFunction.$inject = ['$routeProvider', '$httpProvider' ];
 CommissionDataApp.config(configFunction);

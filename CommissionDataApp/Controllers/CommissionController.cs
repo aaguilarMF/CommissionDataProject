@@ -9,17 +9,21 @@ using Newtonsoft.Json.Serialization;
 
 namespace CommissionDataApp.Controllers
 {
+    [Authorize]
     public class CommissionController : Controller
     {
         // GET: Commission
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult SearchByCustomerNo()
         {
             return View();
         }
+        [Authorize]
         public ActionResult ViewAllData()
         {
             return View();

@@ -127,7 +127,6 @@
         showButton: false,
         hasChanged: false
     };
-    
     $scope.modalShown = false;
     $scope.toggleModal = function () {
         $scope.modalShown = !$scope.modalShown;

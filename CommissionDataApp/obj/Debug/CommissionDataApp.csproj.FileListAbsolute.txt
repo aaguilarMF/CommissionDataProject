@@ -15,6 +15,7 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.pdb
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Antlr3.Runtime.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.Models.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\EntityFramework.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\EntityFramework.SqlServer.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AI.Agent.Intercept.dll
@@ -28,6 +29,7 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AspNet.Identity.Owin.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Data.Edm.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Host.SystemWeb.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Security.Cookies.dll
@@ -39,7 +41,10 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Security.Twitter.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Web.Infrastructure.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Newtonsoft.Json.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Oracle.ManagedDataAccess.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Oracle.ManagedDataAccess.EntityFramework.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Owin.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Spatial.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Helpers.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Mvc.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Optimization.dll
@@ -48,12 +53,15 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.WebPages.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.WebPages.Razor.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\WebGrease.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.Models.pdb
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AI.DependencyCollector.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AI.Web.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.AI.WindowsServer.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.ApplicationInsights.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Data.Edm.xml
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Spatial.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Helpers.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Mvc.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Optimization.xml
@@ -77,17 +85,6 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Security.Google.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Security.Twitter.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.pdb
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Oracle.ManagedDataAccess.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Oracle.ManagedDataAccess.EntityFramework.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.csprojResolveAssemblyReference.cache
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.Models.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Data.Edm.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Spatial.dll
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\CommissionDataApp.Models.pdb
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\Microsoft.Data.Edm.xml
-c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Spatial.xml
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\de\Microsoft.Data.Edm.resources.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\es\Microsoft.Data.Edm.resources.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -106,3 +103,6 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\ru\System.Spatial.resources.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\zh-Hans\System.Spatial.resources.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\zh-Hant\System.Spatial.resources.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.csprojResolveAssemblyReference.cache
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.dll
+c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Debug\CommissionDataApp.pdb

@@ -5,6 +5,7 @@
     <div class="row col-md-12">
         <div ng-if="gridFilled" ng-style="{height: height.height + 'px'}">
             <div ui-grid="gridOptions" ui-grid-selection ui-grid-edit></div>
+            <div><button type="button" class="btn btn-info" ng-click="deleteRow()">Delete Row</button></div>
         </div>
     </div>
     <div class="row">

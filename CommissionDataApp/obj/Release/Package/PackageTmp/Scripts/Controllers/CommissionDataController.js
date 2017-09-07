@@ -96,6 +96,43 @@
         });
 
     };
+    $scope.deleteRow = function () {
+        //$scope.gridOptions.data = vm.resultSimulatedData;
+        var selectedRows = $scope.gridApi.selection.getSelectedRows();
+        var row = selectedRows[0];
+        if (row) {
+            if (window.confirm("Are you sure you want to delete CUSTOMER_NO: "+row.CUSTOMER_NO+"?")) {
+            } else {
+                return;
+            }
+        } else {
+            alert('Select a row in order to delete');
+            return;
+        }
+        if (row) {
+            var result = CommissionFactory.deleteRow(row);
+            result.then(function (response) {
+                if (response.success) {
+                    $scope.populateCommissionTable();
+                    $scope.editModel.showButton = false;
+                } else { //this fires if we don't even reach webapi
+                    alert(response.message);
+                    //$scope.noCustomerFoundDialog
+                }
+            });
+        } else {
+            alert('Select a row by clicking on it first');
+        }
+        /*$timeout(function () {
+            if (vm.gridApi.selection.selectedRow) {
+                vm.gridApi.selection.selectRow(vm.gridOptions.data[0]);
+            }
+        });*/
+    };
+    $scope.tester = function () {
+
+        alert("delete");
+    }
     $scope.saveEdit = function () {
         var selectedRows = $scope.gridApi.selection.getSelectedRows();
         var row = selectedRows[0];
