@@ -1,4 +1,4 @@
-﻿var CommissionDataApp = angular.module('CommissionDataApp', ['ngRoute', 'ui.grid', 'ngAnimate', 'ui.grid.edit', 'ui.bootstrap', 'ui.grid.selection']);
+﻿var CommissionDataApp = angular.module('CommissionDataApp', ['ngRoute', 'ui.grid',  'ui.grid.edit', 'ui.bootstrap', 'ui.grid.selection']);
 
 
 //Controllers

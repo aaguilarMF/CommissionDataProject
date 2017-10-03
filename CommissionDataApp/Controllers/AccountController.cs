@@ -14,14 +14,14 @@ namespace CommissionDataApp.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
-        private bool alreadyHardcoded = true;
+        private bool alreadyHardcoded = false;
 
         public AccountController() {
         }
         public async Task<bool> HardCodeLogin()
         {
             var user = new ApplicationUser() { UserName = "commissionReportUser@magnaflow.com", Email = "commissionReportUser@magnaflow.com" };
-            var result = await UserManager.CreateAsync(user, "BattleToad77!");
+            var result = await UserManager.CreateAsync(user, "99RobotBottles!");
             return true;// result.Succeeded;
 
         }
