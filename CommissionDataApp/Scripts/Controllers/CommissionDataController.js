@@ -25,8 +25,8 @@
             if (response.success) {
                 var data = response.data;
                 var columnDefs = [];
-                var colsToShow = [false, true, false, true, true];
-                var editable = [false, false, false, false, true];
+                var colsToShow = [true, true, false, true];
+                var editable = [false, false, false, true];
                 var target = data[0];
                 var col = 0;
                 for (var k in target) {
@@ -79,7 +79,7 @@
             }
             if (!(newValue === oldValue)) {
                 colDef.cellClass = function (grid, row, col, rowRenderIndex, colRenderIndex) {
-                    if (row.entity.COMMISSION_ID == rowEntity.COMMISSION_ID) {
+                    if (row.entity.CUSTOMER_NO == rowEntity.CUSTOMER_NO) {
                         row.entity.hasBeenEdited = true;
                         return "redtext";
                     }
@@ -136,12 +136,12 @@
     $scope.saveEdit = function () {
         var selectedRows = $scope.gridApi.selection.getSelectedRows();
         var row = selectedRows[0];
-        if (!row.hasBeenEdited) {
+        if ( row === undefined || !row.hasBeenEdited) {
             alert("please select a row that has been ediited");
             return;
         }
         if (row) {
-            alert('Selected Row: ' + row.COMMISSION_ID + ', ' + row.REP_ID + '.');
+            alert('Selected Row: ' + row.CUSTOMER_NO + ', ' + row.REP_ID + '.');
         } else {
             alert('Select a row whose changes you want to save');
             return;
@@ -149,8 +149,7 @@
         var result = CommissionFactory.save({
             customerNumber: row.CUSTOMER_NO,
             representativeId: row.REP_ID,
-            commission: row.COMMISSION,
-            COMMISSION_ID: row.COMMISSION_ID,
+            commission: row.COMMISSION
         }
         );
         result.then(function (response) {

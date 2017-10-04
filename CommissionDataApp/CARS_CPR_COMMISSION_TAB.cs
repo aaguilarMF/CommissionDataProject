@@ -17,7 +17,6 @@ namespace CommissionDataApp
         public string CUSTOMER_NO { get; set; }
         public decimal REP_ID { get; set; }
         public decimal COMMISSION { get; set; }
-        public decimal COMMISSION_ID { get; set; }
     
         public virtual CARS_CPR_OUTSIDE_REP_TAB CARS_CPR_OUTSIDE_REP_TAB { get; set; }
     }

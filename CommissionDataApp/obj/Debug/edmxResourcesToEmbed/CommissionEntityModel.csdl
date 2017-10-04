@@ -44,12 +44,11 @@
   </EntityType>
   <EntityType Name="CARS_CPR_COMMISSION_TAB">
     <Key>
-      <PropertyRef Name="COMMISSION_ID" />
+      <PropertyRef Name="CUSTOMER_NO" />
     </Key>
     <Property Name="CUSTOMER_NO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="REP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
     <Property Name="COMMISSION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-    <Property Name="COMMISSION_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
     <NavigationProperty Name="CARS_CPR_OUTSIDE_REP_TAB" Relationship="CommissionModel.CARS_CPR_COMMISSION_TAB_C_FK1" FromRole="CARS_CPR_COMMISSION_TAB" ToRole="CARS_CPR_OUTSIDE_REP_TAB" />
   </EntityType>
   <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">

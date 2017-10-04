@@ -13,8 +13,8 @@
         result.then(function (response) {
             if (response.success) {
                 var data = response.data;
-                var colsToShow = [false, true, false, true, true];
-                var editable = [false, false, false, false, true];
+                var colsToShow = [true, true, false, true];
+                var editable = [false, false, false, true];
                 var columnDefs = [];
                 var target = data;
                 var col = 0;
@@ -176,8 +176,8 @@
         result.then(function (response) {
             if (response.success) {
                 var data = response.data;
-                var colsToShow = [false, true, false, true, true];
-                var editable = [false, false, false, false, true];
+                var colsToShow = [true, true, false, true];
+                var editable = [false, false, false, true];
                 var columnDefs = [];
                 var target = data;
                 var curr = 0;
@@ -219,8 +219,8 @@
         result.then(function (response) {
             if (response.success) {
                 var data = response.data;
-                var colsToShow = [false, true, false, true, true];
-                var editable = [false, false, false, false, true];
+                var colsToShow = [true, true, false, true];
+                var editable = [false, false, false, true];
                 var columnDefs = [];
                 var target = data;
                 var curr = 0;

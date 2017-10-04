@@ -7,12 +7,11 @@
     <Schema Namespace="CommissionModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CARS_CPR_COMMISSION_TAB">
           <Key>
-            <PropertyRef Name="COMMISSION_ID" />
+            <PropertyRef Name="CUSTOMER_NO" />
           </Key>
           <Property Name="CUSTOMER_NO" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="REP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COMMISSION" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="COMMISSION_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
           <Key>
@@ -149,12 +148,11 @@ FROM "CARX1APP"."CUSTOMER_INFO" "CUSTOMER_INFO"</DefiningQuery>
         </EntityType>
         <EntityType Name="CARS_CPR_COMMISSION_TAB">
           <Key>
-            <PropertyRef Name="COMMISSION_ID" />
+            <PropertyRef Name="CUSTOMER_NO" />
           </Key>
           <Property Name="CUSTOMER_NO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="REP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="COMMISSION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="COMMISSION_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="CARS_CPR_OUTSIDE_REP_TAB" Relationship="CommissionModel.CARS_CPR_COMMISSION_TAB_C_FK1" FromRole="CARS_CPR_COMMISSION_TAB" ToRole="CARS_CPR_OUTSIDE_REP_TAB" />
         </EntityType>
         <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
@@ -212,7 +210,6 @@ FROM "CARX1APP"."CUSTOMER_INFO" "CUSTOMER_INFO"</DefiningQuery>
           <EntitySetMapping Name="CARS_CPR_COMMISSION_TAB">
             <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_COMMISSION_TAB">
               <MappingFragment StoreEntitySet="CARS_CPR_COMMISSION_TAB">
-                <ScalarProperty Name="COMMISSION_ID" ColumnName="COMMISSION_ID" />
                 <ScalarProperty Name="COMMISSION" ColumnName="COMMISSION" />
                 <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
                 <ScalarProperty Name="CUSTOMER_NO" ColumnName="CUSTOMER_NO" />

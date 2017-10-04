@@ -11,6 +11,6 @@ namespace CommissionDataApp.Models.Request.Commission
         public string customerNumber { get; set; }
         public int? representativeId { get; set; }
         public decimal? commission { get; set; }
-        public int? COMMISSION_ID { get; set; }
+        //public int? COMMISSION_ID { get; set; }
     }
 }

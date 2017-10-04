@@ -57,7 +57,7 @@ namespace CommissionDataApp.Controllers
             }
             var commissionDataResponseObject = new Models.CommissionData()
             {
-                COMMISSION_ID = commissionData.COMMISSION_ID,
+                //COMMISSION_ID = commissionData.COMMISSION_ID,
                 CUSTOMER_NO = commissionData.CUSTOMER_NO,
                 OUTSIDE_REP_NAME = commissionData.CARS_CPR_OUTSIDE_REP_TAB.OUTSIDE_REP,
                 REP_ID = commissionData.REP_ID,
@@ -82,86 +82,141 @@ namespace CommissionDataApp.Controllers
         [HttpPost]
         public ActionResult Save(Models.Request.Commission.Save saveModel)
         {
-            var context = new CommissionEntities();
-            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            var response = new Models.Response();
-            CARS_CPR_COMMISSION_TAB commissionEntry = null;
-            Models.CommissionData commissionDataResponseObject = null;
-            string repName = null;
-            /*
-             * Do checks here making sure input is as expectied
-             */
-            if (saveModel.COMMISSION_ID != null)
+            try
             {
-                commissionEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.COMMISSION_ID == saveModel.COMMISSION_ID).FirstOrDefault();
-                if(commissionEntry == null)
+                var context = new CommissionEntities();
+                var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+                var response = new Models.Response();
+                CARS_CPR_COMMISSION_TAB commissionEntry = null;
+                Models.CommissionData commissionDataResponseObject = null;
+                CUSTOMER_INFO customerIsActive = null;
+                string repName = null;
+                /*
+                 * Do checks here making sure input is as expectied
+                 */
+                if (saveModel.customerNumber != null)
                 {
-                    response = new Models.Response()
+                    //commissionEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.COMMISSION_ID == saveModel.COMMISSION_ID).FirstOrDefault();
+                    commissionEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.CUSTOMER_NO == saveModel.customerNumber).FirstOrDefault();
+                    if (commissionEntry == null)
                     {
-                        Success = false,
-                        JSON_RESPONSE_DATA = null, //JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
-                        Message = "Data to edit does not exist."
-                    };
-                    return this.Json(response, JsonRequestBehavior.AllowGet);
+                        customerIsActive = context.CUSTOMER_INFO.Where(x => x.CUSTOMER_ID == saveModel.customerNumber && (!(x.ASSOCIATION_NO.ToLower().Contains("account") && x.ASSOCIATION_NO.ToLower().Contains("closed"))
+                            || x.ASSOCIATION_NO == null)).FirstOrDefault();
+
+                        if(customerIsActive == null)
+                        {
+                            response = new Models.Response()
+                            {
+                                Success = false,
+                                JSON_RESPONSE_DATA = null, //JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
+                                Message = "Customer is not Active"
+                            };
+                            return this.Json(response, JsonRequestBehavior.AllowGet);
+                        }
+
+
+                        commissionEntry = new CARS_CPR_COMMISSION_TAB()
+                        {
+                            CUSTOMER_NO = saveModel.customerNumber,
+                            REP_ID = (decimal)saveModel.representativeId,
+                            COMMISSION = (decimal)saveModel.commission
+
+                        };
+
+                        context.CARS_CPR_COMMISSION_TAB.Add(commissionEntry);
+                        context.SaveChanges();
+
+                        //commissionEntry.COMMISSION_ID = context.CARS_CPR_COMMISSION_TAB.Where(x => x.CUSTOMER_NO == commissionEntry.CUSTOMER_NO
+                        //    && x.REP_ID == commissionEntry.REP_ID && x.COMMISSION == commissionEntry.COMMISSION).Select(x => x.COMMISSION_ID).FirstOrDefault();
+
+                        repName = context.CARS_CPR_OUTSIDE_REP_TAB.Where(x => x.REP_ID == commissionEntry.REP_ID).Select(x => x.OUTSIDE_REP).FirstOrDefault();
+                        commissionDataResponseObject = new Models.CommissionData()
+                        {
+                            //COMMISSION_ID = commissionEntry.COMMISSION_ID,
+                            CUSTOMER_NO = commissionEntry.CUSTOMER_NO,
+                            OUTSIDE_REP_NAME = repName, //here goest he actuat name after you retrieve it from db
+                            REP_ID = commissionEntry.REP_ID,
+                            COMMISSION = commissionEntry.COMMISSION
+                        };
+
+
+                        response = new Models.Response()
+                        {
+                            Success = true,
+                            JSON_RESPONSE_DATA = JsonConvert.SerializeObject(commissionDataResponseObject)// JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
+                        };
+                        return this.Json(response, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        commissionEntry.COMMISSION = (decimal)saveModel.commission;
+                        context.SaveChanges();
+
+                        repName = context.CARS_CPR_OUTSIDE_REP_TAB.Where(x => x.REP_ID == commissionEntry.REP_ID).Select(x => x.OUTSIDE_REP).FirstOrDefault();
+                        commissionDataResponseObject = new Models.CommissionData()
+                        {
+                            //COMMISSION_ID = commissionEntry.COMMISSION_ID,
+                            CUSTOMER_NO = commissionEntry.CUSTOMER_NO,
+                            OUTSIDE_REP_NAME = repName, //here goest he actuat name after you retrieve it from db
+                            REP_ID = commissionEntry.REP_ID,
+                            COMMISSION = commissionEntry.COMMISSION
+                        };
+                        response = new Models.Response()
+                        {
+                            Success = true,
+                            JSON_RESPONSE_DATA = JsonConvert.SerializeObject(commissionDataResponseObject)// JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
+                        };
+                        return this.Json(response, JsonRequestBehavior.AllowGet);
+                    }
+
                 }
                 else
                 {
-                    commissionEntry.COMMISSION = (decimal)saveModel.commission;
-                    context.SaveChanges();
+                    //commissionEntry = new CARS_CPR_COMMISSION_TAB()
+                    //{
+                    //    CUSTOMER_NO = saveModel.customerNumber,
+                    //    REP_ID = (decimal)saveModel.representativeId,
+                    //    COMMISSION = (decimal)saveModel.commission
 
-                    repName = context.CARS_CPR_OUTSIDE_REP_TAB.Where(x => x.REP_ID == commissionEntry.REP_ID).Select(x => x.OUTSIDE_REP).FirstOrDefault();
-                    commissionDataResponseObject = new Models.CommissionData()
-                    {
-                        COMMISSION_ID = commissionEntry.COMMISSION_ID,
-                        CUSTOMER_NO = commissionEntry.CUSTOMER_NO,
-                        OUTSIDE_REP_NAME = repName, //here goest he actuat name after you retrieve it from db
-                        REP_ID = commissionEntry.REP_ID,
-                        COMMISSION = commissionEntry.COMMISSION
-                    };
-                    response = new Models.Response()
-                    {
-                        Success = true,
-                        JSON_RESPONSE_DATA = JsonConvert.SerializeObject(commissionDataResponseObject)// JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
-                    };
-                    return this.Json(response, JsonRequestBehavior.AllowGet);
+                    //};
+
+                    //context.CARS_CPR_COMMISSION_TAB.Add(commissionEntry);
+                    //context.SaveChanges();
+
+                    ////commissionEntry.COMMISSION_ID = context.CARS_CPR_COMMISSION_TAB.Where(x => x.CUSTOMER_NO == commissionEntry.CUSTOMER_NO
+                    ////    && x.REP_ID == commissionEntry.REP_ID && x.COMMISSION == commissionEntry.COMMISSION).Select(x => x.COMMISSION_ID).FirstOrDefault();
+
+                    //repName = context.CARS_CPR_OUTSIDE_REP_TAB.Where(x => x.REP_ID == commissionEntry.REP_ID).Select(x => x.OUTSIDE_REP).FirstOrDefault();
+                    //commissionDataResponseObject = new Models.CommissionData()
+                    //{
+                    //    //COMMISSION_ID = commissionEntry.COMMISSION_ID,
+                    //    CUSTOMER_NO = commissionEntry.CUSTOMER_NO,
+                    //    OUTSIDE_REP_NAME = repName, //here goest he actuat name after you retrieve it from db
+                    //    REP_ID = commissionEntry.REP_ID,
+                    //    COMMISSION = commissionEntry.COMMISSION
+                    //};
+
+
+                    //response = new Models.Response()
+                    //{
+                    //    Success = true,
+                    //    JSON_RESPONSE_DATA = JsonConvert.SerializeObject(commissionDataResponseObject)// JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
+                    //};
+                    //return this.Json(response, JsonRequestBehavior.AllowGet);
                 }
-
-            }else
+            }
+            catch(Exception ex)
             {
-                commissionEntry = new CARS_CPR_COMMISSION_TAB()
-                {
-                    CUSTOMER_NO = saveModel.customerNumber,
-                    REP_ID = (decimal)saveModel.representativeId,
-                    COMMISSION = (decimal)saveModel.commission
-
-                };
-
-                context.CARS_CPR_COMMISSION_TAB.Add(commissionEntry);
-                context.SaveChanges();
-
-                commissionEntry.COMMISSION_ID = context.CARS_CPR_COMMISSION_TAB.Where(x => x.CUSTOMER_NO == commissionEntry.CUSTOMER_NO
-                    && x.REP_ID == commissionEntry.REP_ID && x.COMMISSION == commissionEntry.COMMISSION).Select(x => x.COMMISSION_ID).FirstOrDefault();
-
-                repName = context.CARS_CPR_OUTSIDE_REP_TAB.Where(x => x.REP_ID == commissionEntry.REP_ID).Select(x => x.OUTSIDE_REP).FirstOrDefault();
-                commissionDataResponseObject = new Models.CommissionData()
-                {
-                    COMMISSION_ID = commissionEntry.COMMISSION_ID,
-                    CUSTOMER_NO = commissionEntry.CUSTOMER_NO,
-                    OUTSIDE_REP_NAME = repName, //here goest he actuat name after you retrieve it from db
-                    REP_ID = commissionEntry.REP_ID,
-                    COMMISSION = commissionEntry.COMMISSION
-                };
-
-
-                response = new Models.Response()
-                {
-                    Success = true,
-                    JSON_RESPONSE_DATA = JsonConvert.SerializeObject(commissionDataResponseObject)// JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
-                };
-                return this.Json(response, JsonRequestBehavior.AllowGet);
+                var n = true;
             }
 
-            
+            var response1 = new Models.Response()
+            {
+                Success = false,
+                JSON_RESPONSE_DATA = null, //JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings)
+                Message = "something went terribly wrong."
+            };
+            return this.Json(response1, JsonRequestBehavior.AllowGet);
             //return JsonConvert.SerializeObject(commissionDataResponseObject, Formatting.None, settings); //Returns students list as JSON
         }
         
@@ -197,7 +252,7 @@ namespace CommissionDataApp.Controllers
             {
                 var row = new Models.CommissionData()
                 {
-                    COMMISSION_ID = entry.COMMISSION_ID,
+                    //COMMISSION_ID = entry.COMMISSION_ID,
                     CUSTOMER_NO = entry.CUSTOMER_NO,
                     OUTSIDE_REP_NAME = entry.CARS_CPR_OUTSIDE_REP_TAB.OUTSIDE_REP,
                     REP_ID = entry.REP_ID,
@@ -275,7 +330,8 @@ namespace CommissionDataApp.Controllers
              * Do checks here making sure input is as expectied
              */
 
-            var deleteEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.COMMISSION_ID == commissionModel.COMMISSION_ID).FirstOrDefault();
+            //var deleteEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.COMMISSION_ID == commissionModel.COMMISSION_ID).FirstOrDefault();
+            var deleteEntry = context.CARS_CPR_COMMISSION_TAB.Where(x => x.CUSTOMER_NO == commissionModel.CUSTOMER_NO).FirstOrDefault();
 
             if (deleteEntry != null)
             {
