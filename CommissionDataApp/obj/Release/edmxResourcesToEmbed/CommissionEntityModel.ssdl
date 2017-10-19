@@ -2,12 +2,11 @@
 <Schema Namespace="CommissionModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CARS_CPR_COMMISSION_TAB">
     <Key>
-      <PropertyRef Name="COMMISSION_ID" />
+      <PropertyRef Name="CUSTOMER_NO" />
     </Key>
     <Property Name="CUSTOMER_NO" Type="varchar2" MaxLength="20" Nullable="false" />
     <Property Name="REP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="COMMISSION" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="COMMISSION_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="CARS_CPR_OUTSIDE_REP_TAB">
     <Key>
@@ -51,7 +50,7 @@ warning 6002: The table/view 'CARX1APP.CUSTOMER_INFO' does not have a primary ke
     <Property Name="OBJVERSION" Type="varchar2" MaxLength="2000" />
     <Property Name="OBJKEY" Type="varchar2" MaxLength="50" Nullable="false" />
   </EntityType>
-  <Association Name="CARS_CPR_COMMISSION_TAB_C_FK1">
+  <Association Name="CARS_CPR_COMMISSION_TAB_FK">
     <End Role="CARS_CPR_OUTSIDE_REP_TAB" Type="Self.CARS_CPR_OUTSIDE_REP_TAB" Multiplicity="1" />
     <End Role="CARS_CPR_COMMISSION_TAB" Type="Self.CARS_CPR_COMMISSION_TAB" Multiplicity="*" />
     <ReferentialConstraint>
@@ -91,7 +90,7 @@ warning 6002: The table/view 'CARX1APP.CUSTOMER_INFO' does not have a primary ke
 "CUSTOMER_INFO"."OBJKEY" AS "OBJKEY"
 FROM "CARX1APP"."CUSTOMER_INFO" "CUSTOMER_INFO"</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="CARS_CPR_COMMISSION_TAB_C_FK1" Association="Self.CARS_CPR_COMMISSION_TAB_C_FK1">
+    <AssociationSet Name="CARS_CPR_COMMISSION_TAB_FK" Association="Self.CARS_CPR_COMMISSION_TAB_FK">
       <End Role="CARS_CPR_OUTSIDE_REP_TAB" EntitySet="CARS_CPR_OUTSIDE_REP_TAB" />
       <End Role="CARS_CPR_COMMISSION_TAB" EntitySet="CARS_CPR_COMMISSION_TAB" />
     </AssociationSet>

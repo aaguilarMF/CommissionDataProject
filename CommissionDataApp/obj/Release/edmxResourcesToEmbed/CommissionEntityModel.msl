@@ -31,7 +31,6 @@
     <EntitySetMapping Name="CARS_CPR_COMMISSION_TAB">
       <EntityTypeMapping TypeName="CommissionModel.CARS_CPR_COMMISSION_TAB">
         <MappingFragment StoreEntitySet="CARS_CPR_COMMISSION_TAB">
-          <ScalarProperty Name="COMMISSION_ID" ColumnName="COMMISSION_ID" />
           <ScalarProperty Name="COMMISSION" ColumnName="COMMISSION" />
           <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
           <ScalarProperty Name="CUSTOMER_NO" ColumnName="CUSTOMER_NO" />
