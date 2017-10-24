@@ -2,4 +2,3 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\bin\Debug\CommissionDataApp.Models.pdb
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Debug\CommissionDataApp.Models.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Debug\CommissionDataApp.Models.pdb
-C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp.Models\obj\Debug\CommissionDataApp.Models.csprojResolveAssemblyReference.cache

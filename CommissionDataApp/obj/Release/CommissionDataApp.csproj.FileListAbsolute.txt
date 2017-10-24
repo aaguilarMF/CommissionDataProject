@@ -106,3 +106,9 @@ c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\Commis
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Release\CommissionDataApp.csprojResolveAssemblyReference.cache
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Release\CommissionDataApp.dll
 c:\users\aaguilar\documents\visual studio 2015\Projects\CommissionDataApp\CommissionDataApp\obj\Release\CommissionDataApp.pdb
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Net.Http.Formatting.dll
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Http.dll
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Http.WebHost.dll
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Net.Http.Formatting.xml
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Http.xml
+C:\Users\aaguilar\Documents\Visual Studio 2015\Projects\CommissionDataApp\CommissionDataApp\bin\System.Web.Http.WebHost.xml

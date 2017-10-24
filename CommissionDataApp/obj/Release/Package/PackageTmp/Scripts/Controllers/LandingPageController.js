@@ -1,38 +1,27 @@
-﻿var LandingPageController = function ($scope, $http, $route) {
+﻿var LandingPageController = function ($scope, $http, $route, $window) {
     $scope.models = {
         nameLabel: 'Commission Data App',
-        helloAngular: 'Commission Data'
+        helloAngular: 'Commission Data',
+        active: false
     };
     $scope.navbarProperties = {
         isCollapsed: true
     };
-    $scope.logout = function () {
-        $http.get(
-            '/Account/SignOut'
-            ).then(function (response) { //a response will return with an obect indicating success of data retriveal or some known result. Error would indicate webapi wasn't even reached
-                $route.reload();
-
-                /*if (response.data === "True") {
-                    deferredObject.resolve({
-                        success: true,
-                        data: null
-                    });
-                } else {
-                    deferredObject.resolve({
-                        success: false,
-                        message: response.data.Message
-                    });
-                }*/
-
-            }//     response.data);
-            , function (error) { //it never goes in here
-                /*deferredObject.resolve({
-                    success: false,
-                    data: error.data
-                })*/
+    $scope.logOff = function () {
+        $http.post(
+            '/Account/LogOff'
+            ).then(
+            function (response) {
+                $window.location.reload();
+            },
+            function (error) {
+                alert('Error logging out. Contact IT. But you can also clear your cookies. Go to settings in browser and clear cookies. But Also do contact IT please.')
             });
+    }
+    $scope.homeView = function () {
+        $scope.models.active = true;
     }
 }
 
 // The $inject property of every controller (and pretty much every other type of object in Angular) needs to be a string array equal to the controllers arguments, only as strings
-LandingPageController.$inject = ['$scope', '$http', '$route'];
+LandingPageController.$inject = ['$scope', '$http', '$route', '$window'];

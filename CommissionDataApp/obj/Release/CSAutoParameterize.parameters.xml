@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
+  <parameter name="ADConnectionString-Web.config Connection String" description="ADConnectionString Connection String used in web.config by the application to access the database." defaultValue="LDAP://magnaflow.com:389/DC=magnaflow,DC=com" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\aaguilar\\Documents\\Visual\ Studio\ 2015\\Projects\\CommissionDataApp\\CommissionDataApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ADConnectionString']/@connectionString" />
+  </parameter>
   <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=csdcsdb10\ITDEV;Initial Catalog=CommissionReport;Integrated Security=False;User Id=svcSQL;Password=MagnaIT123;MultipleActiveResultSets=True" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\aaguilar\\Documents\\Visual\ Studio\ 2015\\Projects\\CommissionDataApp\\CommissionDataApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>

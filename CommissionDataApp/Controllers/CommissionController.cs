@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace CommissionDataApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "FIN_COMM_REPORT_RW, FIN_COMM_REPORT_RO")]
     public class CommissionController : Controller
     {
         // GET: Commission

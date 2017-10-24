@@ -6,39 +6,81 @@
 <html ng-app="CommissionDataApp" ng-controller="LandingPageController">
 <head>
     <title ng-bind="models.nameLabel"></title>
+    @*<base href="/FlatRateExemptDetailsTool/">*@
+    @if (!ViewBag.DEBUG)
+    {
+        <base href="/CommissionDataApp/">
+    }
 </head>
 
 <body>
-    
-    <div class="container">
-        <div class="text-center">
-            <h1>{{models.helloAngular}}</h1>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="pm-headbar-logo" style="width:80px;">
+            <img src="~/Images/logo.png" style="height:50px;width:80px;float:left;" />
         </div>
-        
-        <ul class="nav nav-pills">
-            <!--<li><a href="#!routeOne">Route One</a></li>
-        <li><a href="#!routeTwo/6">Route Two</a></li>
-        <li><a href="#!routeThree">Route Three</a></li>-->
-            <li><a href="#!searchCustomerNo">SEARCH</a></li>
-            <li><a href="#!viewAllData">VIEW ALL COMMISSION DATA</a></li>
-            
-            <li><button type="button" class="btn btn-success" ng-click="logout()">logout</button></li>
-            <!--
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="http://devtoolset.magnaflow.com/"> MagnaFlow ToolSet</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="navbarProperties.isCollapsed = !navbarProperties.isCollapsed">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand pull-left" href="#" ng-click="">Commission Data App</a>
+            </div>
+
+            <div class="navbar-collapse collapse" uib-collapse="navbarProperties.isCollapsed">
+                <ul class="nav navbar-nav">
+                    @*<li ng-class="{active: models.active}"><a ng-click="homeView()" href="#!HomeView">Home</a></li>*@
+                    <li><a href="#!searchCustomerNo">SEARCH</a></li>
+                    <li><a href="#!viewAllData">VIEW ALL COMMISSION DATA</a></li>
+                </ul>
+                @if (ViewBag.Name != null && ViewBag.Name != "")
+                {
+                    <div class="pull-right">
+                        <div class="row">
+                            <span>
+                                HI, <code>@ViewBag.Name</code>!
+                            </span>
+                        </div>
+                        <div class="row pull-right">
+                            <button type="button" class="btn btn-success" ng-click="logOff()">LOGOUT</button>
+                        </div>
+                    </div>
+                }
                 
-            <li><a href="#!signOut">Sign Out</a></li>
-            <li><a href="#!login">Login</a></li>
-        <li><a href="#!register">Register</a></li>-->
+            </div>
+        </div>
+    </div>
+    <div class="affix">
+        <ul class="nav nav-stacked" id="sidebar">
+            <li><a href="#sec0">Section 0</a></li>
+            <li><a href="#sec1">Section 1</a></li>
+            <li>
+                <a href="#sec2">Section 2</a>
+                <ul class="nav nav-stacked">
+                    <li><a href="#sec2a"> </a></li>
+                    <li><a href="#sec2b">Section 2 b</a></li>
+                </ul>
+            </li>
+            <li><a href="#sec3">Section 3</a></li>
+            <li><a href="#sec4">Section 4</a></li>
         </ul>
     </div>
-    
-    <!--<ul>
-        <li><a href="#!login">Login</a></li>
-        <li><a href="#!register">Register</a></li>
-    </ul>-->
-    <div class="container">
+    <div class="container mainContent">
+        <div class="text-center">
+            <h1>{{models.helloAngular}}</h1>
+            @*<ul class="nav nav-pills">
+                <li><a href="#!searchCustomerNo">SEARCH</a></li>
+                <li><a href="#!viewAllData">VIEW ALL COMMISSION DATA</a></li>
+            </ul>*@
+        </div>
         <div class="gridStyle" ng-view></div>
     </div>
-        
-    
 </body>
 </html>

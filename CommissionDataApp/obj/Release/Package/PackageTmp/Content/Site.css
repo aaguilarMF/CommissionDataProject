@@ -1,4 +1,6 @@
-﻿
+﻿.mainContent {
+    margin-top: 60px;
+}
 .gridStyle {
     border: 0px solid rgb(212,212,212);
     padding-left:0px;

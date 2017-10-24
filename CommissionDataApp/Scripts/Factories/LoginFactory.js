@@ -4,7 +4,7 @@
 
         $http.post(
             '/Account/Login', {
-                Email: emailAddress,
+                UserName: emailAddress,
                 Password: password,
                 RememberMe: rememberMe
             }
